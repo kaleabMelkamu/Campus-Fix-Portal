@@ -1,4 +1,4 @@
-namespace TmsApi.Application.DTOs;
+namespace FixMyCampus.Application.DTOs;
 
 public record PagedRequest
 {
