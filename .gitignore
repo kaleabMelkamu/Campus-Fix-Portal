@@ -1,0 +1,42 @@
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+
+# Rider
+.idea/
+
+# NuGet
+packages/
+# OS
+.DS_Store
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# node_modules
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.angular/
+
+
+# EF tools state
+*.log
+*.db
+*.bak
+*.cache
+*.tmp
+*.swp
+*.js
+*.tsbuildinfo
+
+
+
+
+
+

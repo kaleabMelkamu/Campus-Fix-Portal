@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FixMyCampus.API/FixMyCampus.API.csproj" />
+    <Project Path="src/FixMyCampus.Application/FixMyCampus.Application.csproj" />
+    <Project Path="src/FixMyCampus.Domain/FixMyCampus.Domain.csproj" />
+    <Project Path="src/FixMyCampus.Infrastructure/FixMyCampus.Infrastructure.csproj" />
+  </Folder>
+</Solution>
