@@ -1,0 +1,49 @@
+.tickets-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.tickets-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0078d7;
+}
+
+.ticket-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.ticket-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.ticket-card p {
+  margin: 6px 0;
+}
+
+.ticket-image {
+  margin-top: 10px;
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Status colors */
+.pending {
+  color: orange;
+  font-weight: bold;
+}
+.in\ progress {
+  color: dodgerblue;
+  font-weight: bold;
+}
+.resolved {
+  color: green;
+  font-weight: bold;
+}
