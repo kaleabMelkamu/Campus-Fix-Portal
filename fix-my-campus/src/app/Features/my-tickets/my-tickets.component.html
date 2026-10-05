@@ -1,0 +1,17 @@
+<div class="tickets-container">
+  <h2>My Submitted Tickets</h2>
+
+  <div *ngFor="let ticket of myTickets" class="ticket-card">
+    <h3>{{ ticket.title }}</h3>
+    <p><strong>Location:</strong> {{ ticket.location }}</p>
+    <p><strong>Description:</strong> {{ ticket.description }}</p>
+    <p>
+      <strong>Status:</strong>
+      <span [ngClass]="ticket.status.toLowerCase()">{{ ticket.status }}</span>
+    </p>
+
+    <div *ngIf="ticket.image">
+      <img [src]="ticket.image" alt="Ticket image" class="ticket-image" />
+    </div>
+  </div>
+</div>

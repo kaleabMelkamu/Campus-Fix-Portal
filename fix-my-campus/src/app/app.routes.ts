@@ -5,7 +5,7 @@ import { CampusFeedComponent } from './Features/campus-feed/campus-feed.componen
 import { MyTicketsComponent } from './Features/my-tickets/my-tickets.component';
 import { AdminDashboardComponent } from './Features/admin-dashboard/admin-dashboard.component';
 import { RegisterComponent } from './Features/register/register.component';
-
+import { TechnicianDashboardComponent } from './Features/technician-dashboard/technician-dashboard.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'submit-ticket', component: TicketFormComponent },
@@ -14,4 +14,5 @@ export const routes: Routes = [
   { path: 'admin', component: AdminDashboardComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
+  { path: 'technician', component: TechnicianDashboardComponent },
 ];

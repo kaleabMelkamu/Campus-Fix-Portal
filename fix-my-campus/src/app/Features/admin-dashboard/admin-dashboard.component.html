@@ -1,0 +1,58 @@
+<div class="admin-container">
+  <h2>Admin Dashboard</h2>
+
+  <div class="status-summary">
+    <div class="summary-card new">
+      <h3>New Requests</h3>
+      <p>{{ getStatusCount("Pending") }}</p>
+    </div>
+    <div class="summary-card assigned">
+      <h3>Assigned</h3>
+      <p>{{ getStatusCount("Assigned") }}</p>
+    </div>
+    <div class="summary-card in-progress">
+      <h3>In Progress</h3>
+      <p>{{ getStatusCount("In Progress") }}</p>
+    </div>
+    <div class="summary-card resolved">
+      <h3>Resolved</h3>
+      <p>{{ getStatusCount("Resolved") }}</p>
+    </div>
+  </div>
+
+  <div *ngFor="let ticket of tickets" class="ticket-card">
+    <h3>{{ ticket.title }}</h3>
+    <p><strong>Location:</strong> {{ ticket.location }}</p>
+    <p><strong>Description:</strong> {{ ticket.description }}</p>
+    <p><strong>Reporter:</strong> {{ ticket.reporter }}</p>
+    <p>
+      <strong>Status:</strong>
+      <span [ngClass]="ticket.status.toLowerCase()">{{ ticket.status }}</span>
+    </p>
+
+    <p *ngIf="ticket.technician">
+      <strong>Technician:</strong> {{ ticket.technician }}
+    </p>
+
+    <div class="assign-section" *ngIf="!ticket.technician">
+      <label for="techSelect">Assign Technician:</label>
+      <select
+        id="techSelect"
+        [(ngModel)]="ticket.technician"
+        (ngModelChange)="assignTechnician(ticket, $event)"
+      >
+        <option value="" disabled selected>Select technician</option>
+        <option *ngFor="let tech of technicians" [value]="tech">
+          {{ tech }}
+        </option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button (click)="updateStatus(ticket, 'In Progress')">
+        Mark In Progress
+      </button>
+      <button (click)="updateStatus(ticket, 'Resolved')">Mark Resolved</button>
+    </div>
+  </div>
+</div>

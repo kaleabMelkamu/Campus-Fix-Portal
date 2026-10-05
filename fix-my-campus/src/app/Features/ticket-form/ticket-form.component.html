@@ -1,0 +1,44 @@
+<div class="ticket-form-container">
+  <h2>Report a Campus Issue</h2>
+  <form (ngSubmit)="submitTicket()">
+    <!-- Dropdown for categories -->
+    <label for="category">Issue Category</label>
+    <select
+      id="category"
+      [(ngModel)]="selectedCategory"
+      name="selectedCategory"
+      required
+    >
+      <option value="" disabled>Select a category</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <!-- Custom title if "Other" is selected -->
+    <div *ngIf="selectedCategory === 'Other'">
+      <label for="customTitle">Custom Issue Title</label>
+      <input
+        id="customTitle"
+        [(ngModel)]="customTitle"
+        name="customTitle"
+        required
+      />
+    </div>
+
+    <label for="location">Location</label>
+    <input id="location" [(ngModel)]="location" name="location" required />
+
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      [(ngModel)]="description"
+      name="description"
+      required
+    ></textarea>
+
+    <!-- File upload -->
+    <label for="file">Attach a Picture </label>
+    <input id="file" type="file" (change)="onFileSelected($event)" />
+
+    <button type="submit">Submit Ticket</button>
+  </form>
+</div>

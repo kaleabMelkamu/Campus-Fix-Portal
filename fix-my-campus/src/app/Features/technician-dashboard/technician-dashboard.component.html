@@ -1,0 +1,19 @@
+<div class="tech-container">
+  <h2>Technician Dashboard</h2>
+  <p>Logged in as: {{ currentTechnician }}</p>
+
+  <div *ngFor="let ticket of myTickets" class="ticket-card">
+    <h3>{{ ticket.title }}</h3>
+    <p><strong>Location:</strong> {{ ticket.location }}</p>
+    <p><strong>Description:</strong> {{ ticket.description }}</p>
+    <p><strong>Reporter:</strong> {{ ticket.reporter }}</p>
+    <p><strong>Status:</strong> 
+      <span [ngClass]="ticket.status.toLowerCase()">{{ ticket.status }}</span>
+    </p>
+
+    <div class="actions">
+      <button (click)="updateStatus(ticket, 'In Progress')">Mark In Progress</button>
+      <button (click)="updateStatus(ticket, 'Resolved')">Mark Resolved</button>
+    </div>
+  </div>
+</div>

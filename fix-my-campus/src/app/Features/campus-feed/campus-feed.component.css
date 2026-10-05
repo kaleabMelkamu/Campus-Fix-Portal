@@ -1,0 +1,48 @@
+.feed-container {
+  padding: 20px;
+}
+
+.feed-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0078d7;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1;
+  margin: 0 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.column h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.ticket-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.new h3 {
+  color: orange;
+}
+.assigned h3 {
+  color: purple;
+}
+.in-progress h3 {
+  color: dodgerblue;
+}
+.resolved h3 {
+  color: green;
+}

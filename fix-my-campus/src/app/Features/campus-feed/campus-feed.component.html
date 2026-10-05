@@ -1,0 +1,65 @@
+<div class="feed-container">
+  <h2>Campus Feed</h2>
+
+  <div class="board">
+    <div class="column new">
+      <h3>New Requests</h3>
+      <div
+        *ngFor="let ticket of getTicketsByStatus('Pending')"
+        class="ticket-card"
+      >
+        <h4>{{ ticket.title }}</h4>
+        <p><strong>Location:</strong> {{ ticket.location }}</p>
+        <p>{{ ticket.description }}</p>
+        <p>
+          <em>Reporter: {{ ticket.reporter }}</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="column assigned">
+      <h3>Assigned</h3>
+      <div
+        *ngFor="let ticket of getTicketsByStatus('Assigned')"
+        class="ticket-card"
+      >
+        <h4>{{ ticket.title }}</h4>
+        <p><strong>Location:</strong> {{ ticket.location }}</p>
+        <p>{{ ticket.description }}</p>
+        <p>
+          <em>Technician: {{ ticket.technician }}</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="column in-progress">
+      <h3>In Progress</h3>
+      <div
+        *ngFor="let ticket of getTicketsByStatus('In Progress')"
+        class="ticket-card"
+      >
+        <h4>{{ ticket.title }}</h4>
+        <p><strong>Location:</strong> {{ ticket.location }}</p>
+        <p>{{ ticket.description }}</p>
+        <p>
+          <em>Technician: {{ ticket.technician }}</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="column resolved">
+      <h3>Resolved</h3>
+      <div
+        *ngFor="let ticket of getTicketsByStatus('Resolved')"
+        class="ticket-card"
+      >
+        <h4>{{ ticket.title }}</h4>
+        <p><strong>Location:</strong> {{ ticket.location }}</p>
+        <p>{{ ticket.description }}</p>
+        <p>
+          <em>Technician: {{ ticket.technician }}</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
