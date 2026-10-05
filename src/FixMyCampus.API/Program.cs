@@ -18,7 +18,7 @@ builder.Services.AddDbContext<MyCampusDbContext>(options =>
 
 builder.Services.AddScoped<IAppDbContext>(sp => sp.GetRequiredService<MyCampusDbContext>());
 
-// 2. JWT & Auth Configuration
+// 2. JWT & Authentication Configuration
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.SectionName));
 var jwtSettings = builder.Configuration.GetSection(JwtSettings.SectionName).Get<JwtSettings>() ?? new JwtSettings();
 
@@ -63,7 +63,28 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
-builder.Services.AddOpenApi();
+// 6. OpenAPI Versioning (v1 Current / v2 Preview)
+builder.Services.AddOpenApi("v1", options =>
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Info.Title = "FixMyCampus API - v1 (Current)";
+        document.Info.Version = "v1";
+        document.Info.Description = "FixMyCampus Issue Reporting & Maintenance Tracker - Version 1 (Production MVP).";
+        return Task.CompletedTask;
+    });
+});
+
+builder.Services.AddOpenApi("v2", options =>
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Info.Title = "FixMyCampus API - v2 (Feature)";
+        document.Info.Version = "v2";
+        document.Info.Description = "FixMyCampus - Version 2.";
+        return Task.CompletedTask;
+    });
+});
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
@@ -83,10 +104,27 @@ catch (Exception ex)
     logger.LogWarning(ex, "Database seeding/migration skipped or encountered an error.");
 }
 
+// 7. Scalar API Reference with v1/v2 Versioning
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference();
+
+    // Scalar for v1: accessible at /scalar/v1
+    app.MapScalarApiReference("/scalar/v1", options =>
+    {
+        options.WithTitle("FixMyCampus API - v1 (Current)")
+               .WithOpenApiRoutePattern("/openapi/v1.json");
+    });
+
+    // Scalar for v2: accessible at /scalar/v2
+    app.MapScalarApiReference("/scalar/v2", options =>
+    {
+        options.WithTitle("FixMyCampus API - v2 (Preview)")
+               .WithOpenApiRoutePattern("/openapi/v2.json");
+    });
+
+    // Default redirect /scalar -> /scalar/v1
+    app.MapGet("/scalar", () => Results.Redirect("/scalar/v1"));
 }
 
 app.UseExceptionHandler();
