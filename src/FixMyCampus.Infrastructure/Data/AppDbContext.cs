@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using FixMyCampus.Application.Common.Interfaces;
 using FixMyCampus.Domain.Entities;
 
 namespace FixMyCampus.Infrastructure.Data;
 
-public class MyCampusDbContext : DbContext
+public class MyCampusDbContext : DbContext, IAppDbContext
 {
     public MyCampusDbContext(
         DbContextOptions<MyCampusDbContext> options)

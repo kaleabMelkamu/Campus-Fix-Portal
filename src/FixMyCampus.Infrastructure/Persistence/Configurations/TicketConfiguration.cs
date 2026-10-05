@@ -60,6 +60,10 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
         builder.Property(t => t.TechnicianId)
             .IsRequired(false);
 
+        builder.Property(t => t.TechnicianName)
+            .IsRequired(false)
+            .HasMaxLength(150);
+
         // Created At
         builder.Property(t => t.CreatedAt)
             .IsRequired();

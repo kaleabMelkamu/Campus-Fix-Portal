@@ -40,6 +40,48 @@ public class GlobalExceptionHandler(
                         )
             ),
 
+            FixMyCampus.Domain.Exceptions.DomainException de => (
+                StatusCodes.Status400BadRequest,
+                "Business Rule Violation",
+                de.Message,
+                null
+            ),
+
+            FixMyCampus.Application.Common.Exceptions.BusinessRuleException bre => (
+                StatusCodes.Status400BadRequest,
+                "Business Rule Violation",
+                bre.Message,
+                null
+            ),
+
+            FixMyCampus.Application.Common.Exceptions.NotFoundException nfe => (
+                StatusCodes.Status404NotFound,
+                "Not Found",
+                nfe.Message,
+                null
+            ),
+
+            FixMyCampus.Application.Common.Exceptions.ConflictException ce => (
+                StatusCodes.Status409Conflict,
+                "Conflict",
+                ce.Message,
+                null
+            ),
+
+            FixMyCampus.Application.Common.Exceptions.UnauthorizedException ue => (
+                StatusCodes.Status401Unauthorized,
+                "Unauthorized",
+                ue.Message,
+                null
+            ),
+
+            FixMyCampus.Application.Common.Exceptions.ForbiddenException fe => (
+                StatusCodes.Status403Forbidden,
+                "Forbidden",
+                fe.Message,
+                null
+            ),
+
             _ => (
                 StatusCodes.Status500InternalServerError,
                 "Server error",
