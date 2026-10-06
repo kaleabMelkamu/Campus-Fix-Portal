@@ -8,6 +8,7 @@ using FixMyCampus.Domain.Enums;
 
 namespace FixMyCampus.API.Controllers;
 
+[Authorize(Roles = "Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class AdminController : ControllerBase

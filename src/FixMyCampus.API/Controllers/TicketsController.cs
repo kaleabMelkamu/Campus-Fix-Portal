@@ -6,6 +6,7 @@ using FixMyCampus.Application.Services;
 
 namespace FixMyCampus.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class TicketsController : ControllerBase
@@ -70,6 +71,7 @@ public class TicketsController : ControllerBase
     /// Admin Hard Rule: Assigns a technician by name to take ticket from New -> Assigned.
     /// Rejects if ticket is not New (400).
     /// </summary>
+    [Authorize(Roles = "Admin")]
     [HttpPost("{id:guid}/assign")]
     [ProducesResponseType(typeof(TicketDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -85,6 +87,8 @@ public class TicketsController : ControllerBase
     /// Admin Hard Rule: Moves status along strict path: New -> Assigned -> InProgress -> Resolved.
     /// API rejects illegal skips or backward moves with 400 Bad Request.
     /// </summary>
+    
+    [Authorize(Roles = "Admin")]
     [HttpPost("{id:guid}/status")]
     [ProducesResponseType(typeof(TicketDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
