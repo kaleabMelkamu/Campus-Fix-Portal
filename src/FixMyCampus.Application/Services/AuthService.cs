@@ -76,7 +76,7 @@ public class AuthService : IAuthService
             FullName = request.FullName.Trim(),
             Email = email,
             PasswordHash = PasswordHasher.Hash(request.Password),
-            Role = request.Role,
+            Role = UserRole.Reporter,
             CreatedAt = DateTime.UtcNow
         };
 
